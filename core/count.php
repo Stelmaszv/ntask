@@ -43,6 +43,7 @@ class mainCount{
     }
 }
 class listOfObjects{
+    private $data;
     function __construct(){
         $this->db=new DB();
     }

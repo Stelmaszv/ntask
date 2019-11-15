@@ -10,9 +10,9 @@ $template=new CTemplate('show.htm');
 $listOfObject= new listOfObjects();
 $view=new view();
 $objects=$view->show($listOfObject->showobjects());
-$template->CAdd('[#heder#]',sectionGenarate::section('header.htm'));
+$template->CAdd('[#header#]',sectionGenarate::section('header.htm'));
 $template->CAdd('[#footer#]',sectionGenarate::section('footer.htm'));
-$template->CAdd('[#cont#]',count($objects));
+$template->CAdd('[#count#]',count($objects));
 $template->CLoop('objects',$objects);
 echo $template->CGet();
 ?>
