@@ -1,7 +1,8 @@
 <?php
 namespace core\validate;
 class observervalidator{
-    protected $validList = array();
+    private $validList = [];
+    private $errorlist=[];
     public function add($validElement) {
         $this->validList[spl_object_hash($validElement)] = $validElement;
     }
@@ -10,8 +11,11 @@ class observervalidator{
     }
     public function validateStart() {
         foreach ($this->validList as $el) {
-            $el->valid();
+            $this->setError($el->valid());
         }
+    }
+    private function setError(){
+        
     }
  
 }
