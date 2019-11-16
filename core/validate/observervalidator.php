@@ -8,7 +8,7 @@ class observervalidator{
     public function remove($validElement) {
         unset($this->validList[spl_object_hash($validElement)]);
     }
-    public function valdateStart() {
+    public function validateStart() {
         foreach ($this->validList as $el) {
             $el->valid();
         }
