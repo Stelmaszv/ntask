@@ -1,4 +1,6 @@
 <?php
+namespace core\content;
+use core\draw\drawimg;
 class view{
     public function show(array $items){
         foreach ($items as $key => $value){
@@ -7,10 +9,4 @@ class view{
         }
         return $items;
     }
-}
-class sectionGenarate{
-    static function section($place){
-        $section= $template=new CTemplate($place);
-        return $section->CGet();
-    }   
 }

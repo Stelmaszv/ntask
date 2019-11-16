@@ -1,4 +1,5 @@
 <?php
+namespace core\content;
 class CTemplate {
   private $code;
   private $keywords;

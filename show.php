@@ -1,14 +1,12 @@
 <?php
-require('core/DB.php');
-require('core/count.php');
-require('draw/draw.php');
-require('core/contet.php');
-require('core/CTemplate.php');
-require('core/validation.php');
-$valdate=new validate($_POST);
+require 'vendor/autoload.php';
+use core\content\CTemplate;
+use core\content\sectionGenarate;
+use core\content\view;
+use core\count\listOfObjects;
 $template=new CTemplate('show.htm');
-$listOfObject= new listOfObjects();
 $view=new view();
+$listOfObject= new listOfObjects();
 $objects=$view->show($listOfObject->showobjects());
 $template->CAdd('[#header#]',sectionGenarate::section('header.htm'));
 $template->CAdd('[#footer#]',sectionGenarate::section('footer.htm'));

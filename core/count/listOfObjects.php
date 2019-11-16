@@ -1,47 +1,6 @@
 <?php
-interface miancountinterdface{
-    function set();
-}
-abstract class generate implements miancountinterdface{
-    protected $data;
-    function __construct($data){
-        $this->data=$data;
-        $this->set();
-    }
-    public function returndata(){
-        return $this->data;
-    }
-}
-class square extends generate{
-    public function set(){
-        $this->data['volume']=$this->data['var1']*$this->data['var1'];
-    }
-}
-class rectangle extends generate{
-    public function set(){
-        if($this->data['v2']===0 ){
-            $this->data['volume']=$this->data['var1']*$this->data['var2'];
-        }else{
-            die('v2 is undefined for rectangle');
-        }
-    }
-}
-class circle extends square{}
-class mainCount{
-    private $datainObjects;
-    private $listOfObjects;
-    function __construct(array $data){
-        $this->listOfObjects=new listOfObjects();
-        $objects['square']= new square($data);
-        $objects['rectangle']= new square($data);
-        $objects['circle']= new square($data);
-        $this->datainObjects=$objects[$data['geometricshapetype']];
-        $this->addObjects();
-    }
-    public function addObjects(){
-        $this->listOfObjects->create($this->datainObjects->returndata());
-    }
-}
+namespace core\count;
+use core\DB; 
 class listOfObjects{
     private $data;
     function __construct(){

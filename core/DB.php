@@ -1,4 +1,5 @@
 <?php
+    namespace core;
     class DB{
         const host='localhost';
         const dbname='task';
@@ -9,7 +10,7 @@
         public $sql;
        function __construct($sql=false){
            try {
-               $this->com = new MySQLi(self::host,self::username,self::password,self::dbname);
+               $this->com = new \MySQLi(self::host,self::username,self::password,self::dbname);
                $this->sql = $sql;
            }catch (Exception $exception){
                echo $exception->getMessage();
