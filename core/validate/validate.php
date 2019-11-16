@@ -1,6 +1,10 @@
 <?php
 namespace core\validate;
 use core\validate\colorvalid;
+use core\validate\rectanglevalid;
+use core\validate\varvalid;
+use core\validate\typevalid;
+use core\validate\observervalidator;
 class validate{
     private $data; 
     function __construct(array $data){
@@ -8,16 +12,12 @@ class validate{
     }
     public function validate(){
         if(isset($this->data['count'])){
-            colorvalid::valid($this->data['color']);
-            if($this->data['var1']<1){
-                die('v1 is undefined !');
-            }
-            if($this->data['var2']<1 && $this->data['geometricshapetype']==='rectangle'){
-                die('v2 is undefined for rectangle !');
-            }
-            if(!$this->data['geometricshapetype']){
-                die('choose fig !');
-            }
+            $validator=new observervalidator();
+            $validator->add(new colorvalid($this->data,'color'));
+            $validator->add(new typevalid($this->data,'geometricshapetype'));
+            $validator->add(new varvalid($this->data,'var1'));
+            $validator->add(new rectanglevalid($this->data,'var2'));
+            $validator->valdateStart();
             return true;
         }
         return false;
