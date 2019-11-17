@@ -1,7 +1,7 @@
 <?php
 namespace core\validate;
 class observervalidator{
-    private $validList = [];
+    private $validList=[];
     public function add($validElement) {
         $this->validList[spl_object_hash($validElement)] = $validElement;
     }
