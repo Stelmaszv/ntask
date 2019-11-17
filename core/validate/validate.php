@@ -13,7 +13,7 @@ class validate{
             $validator->add(new typevalid($data,'geometricshapetype'));
             $validator->add(new varvalid($data,'var1'));
             $validator->add(new rectanglevalid($data,'var2'));
-            $validator->validateStart();
+            $validator->validateStart( );
             return true;
         }
         return false;

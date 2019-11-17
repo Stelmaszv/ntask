@@ -2,5 +2,5 @@
 namespace core\validate;
 use core\validate\valid;
 class varvalid extends valid{
-    function validaction(){}
+    function validaction(){ }
 }
