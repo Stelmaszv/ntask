@@ -1,7 +1,6 @@
 <?php
 namespace core\validate;
-use core\interfaces\validiterface;
-abstract class valid implements validiterface{
+abstract class valid{
     protected $data;
     protected $validval;
     function __construct($data,string $validval){
@@ -15,4 +14,5 @@ abstract class valid implements validiterface{
             die($this->validval.' is undefined');
         }
     }
+    abstract function validaction();
 } 

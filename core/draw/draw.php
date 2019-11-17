@@ -1,11 +1,11 @@
 <?php
 namespace core\draw;
-use core\interfaces\drawinterface;
-abstract class draw implements drawinterface{
+abstract class draw{
     public $data;
     function __construct(array $data){
         $this->data=$data;
     }
+    abstract function generate();
     public function startdraw(){
         $this->preapare();
         return $this->generate();

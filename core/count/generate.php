@@ -1,7 +1,6 @@
 <?php
 namespace core\count;
-use core\interfaces\miancountinterdface;
-abstract class generate implements miancountinterdface{
+abstract class generate{
     protected $data;
     function __construct($data){
         $this->data=$data;
@@ -10,4 +9,5 @@ abstract class generate implements miancountinterdface{
     public function returndata(){
         return $this->data;
     }
+    abstract function set();
 }
