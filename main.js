@@ -1,22 +1,52 @@
 const form=$(".form");
-const select=document.querySelector('.type')
-const var2=document.querySelector('.secundval')
-select.addEventListener("change", function(){
-    if(select.value==='rectangle'){
-        var2.style.display='block';
+const select=$(".type")
+const var2=$(".secundval")
+const PI=3.1415
+select.on("change", function(){
+    if(select.val()==='1'){
+        var2.slideDown('slow');
     }else{
-        var2.style.display='none';
+        var2.slideUp('slow');
     }
 });
 form.on("submit",function(e){
     e.preventDefault()
     valid= new validate()
     if(valid.ifvalid()){
-        
+        mian = new maincount(select)
     }else{
         valid.showEroor()
     }
 })
+class count{
+    count(){}
+}   
+class countSquare extends count{
+    count(){
+        let var1=$(".v1").val()
+        return var1*var1;
+    }
+}
+class countRectangle extends count{
+    count(){
+        let var1=$(".v1").val()
+        let var2=$(".v2").val()
+        return var1*var2;
+    }
+}
+class countCircle extends count{
+    count(){
+        let var1=$(".v1").val()
+        return var1*var1*PI;
+    }
+}
+class maincount{
+    constructor(select){
+        let objects = [new countSquare,new countRectangle,new countCircle]
+        let surfacearea=objects[select.val()].count()
+        alert(surfacearea)
+    } 
+}
 class mianvalid{
   constructor(item){
     this.item=$(item)
@@ -35,7 +65,7 @@ class mianvalid{
 class validType extends mianvalid{
     set(){
         let var2=$(".v2")
-        if(this.item.val()=='rectangle' && var2.val()<1){
+        if(this.item.val()==1 && var2.val()<1){
             this.stan=true;
             return 'v2 is undefined for rectangle !'
         }
@@ -52,7 +82,10 @@ class validate{
         this.errorlistElement=$(".erroslist");
     }
     ifvalid(){
-        return false
+       if(!this.errorlist.length){
+           return true;
+       }
+       return false
     }
     showEroor(){
         this.errorlistElement.html('')
