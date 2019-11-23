@@ -2,22 +2,77 @@ const form=$(".form");
 const select=$(".type")
 const var2=$(".secundval")
 const PI=3.1415
-select.on("change", function(){
-    if(select.val()==='1'){
-        var2.slideDown('slow');
-    }else{
-        var2.slideUp('slow');
-    }
-});
-form.on("submit",function(e){
-    e.preventDefault()
-    valid= new validate()
-    if(valid.ifvalid()){
-        mian = new maincount(select)
-    }else{
-        valid.showEroor()
-    }
+$(document).ready(function(){
+    select.on("change", function(){
+        if(select.val()==='1'){
+            var2.slideDown('slow');
+        }else{
+            var2.slideUp('slow');
+        }
+    });
+    let colectionlist = new colection()
+    form.on("submit",function(e){
+        e.preventDefault()
+        valid= new validate()
+        if(valid.ifvalid()){
+            mian = new maincount(select,colectionlist,form)
+        }else{
+            valid.showEroor()
+        }
+        
+    })
 })
+class item{
+    constructor(data){
+        this.data=data
+    }
+}
+class colection{
+    constructor(){
+        this.objects=[]
+        this.objectsList=$(".objectsList");
+
+    }
+    add(item){
+        this.mathcounter=0
+        if(this.ifunique(item)){
+            this.objects.push(item)
+            this.showItems()
+        }else{
+            this.errorlistElement=$(".erroslist");
+            this.errorlistElement.html('')
+            this.errorlistElement.append('<li>This objects is not unique</li>')
+        }
+    }
+    ifunique(el){
+        let index=0
+        for(let item of this.objects){
+            if(this.objects[index].data.color==el.data.color ){
+                this.mathcounter++
+            }
+            if(this.objects[index].data.type==el.data.type){
+                this.mathcounter++
+            }
+            if(this.objects[index].data.v1==el.data.v1){
+                this.mathcounter++
+            }
+            if(this.objects[index].data.v2==el.data.v2){
+                this.mathcounter++
+            }
+            index=index+1
+        }
+        if(this.mathcounter==4){
+            return false
+        }
+        return true
+    }
+    showItems(){
+        this.objectsList.html('')
+        for(let item of this.objects){
+            this.objectsList.append( '<li><span>color:<b>'+item.data.color+'</b>,type:<b>'+item.data.type+'</b>,v1:<b>'+item.data.v1+'</b>,v2:<b>'+item.data.v2+'</b>,surfacearea:<b>'+item.data.surfacearea+'</b></span></li>' )
+        }
+    }
+}
 class count{
     count(){}
 }   
@@ -41,10 +96,11 @@ class countCircle extends count{
     }
 }
 class maincount{
-    constructor(select){
+    constructor(select,colection,form){
         let objects = [new countSquare,new countRectangle,new countCircle]
         let surfacearea=objects[select.val()].count()
-        alert(surfacearea)
+
+        colection.add(new item({'color':$(".color").val(),'type':$(".type").val(),'v1':$(".v1").val(),'v2':$(".v2").val(),'surfacearea':surfacearea}))
     } 
 }
 class mianvalid{
