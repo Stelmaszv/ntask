@@ -1,6 +1,7 @@
 const form=$(".form");
 const select=$(".type")
 const var2=$(".secundval")
+const erroslist=$(".erroslist")
 const PI=3.1415
 $(document).ready(function(){
     select.on("change", function(){
@@ -25,51 +26,75 @@ $(document).ready(function(){
 class item{
     constructor(data){
         this.data=data
+        this.mathcounter=0
     }
 }
 class colection{
     constructor(){
         this.objects=[]
         this.objectsList=$(".objectsList");
+        this.errorlistElement=$(".erroslist");
 
     }
     add(item){
-        this.mathcounter=0
         if(this.ifunique(item)){
             this.objects.push(item)
             this.showItems()
         }else{
-            this.errorlistElement=$(".erroslist");
             this.errorlistElement.html('')
+            this.errorlistElement.slideDown()
             this.errorlistElement.append('<li>This objects is not unique</li>')
         }
     }
     ifunique(el){
         let index=0
+        let color=false
+        let type=false
+        let v1=false
+        let v2=false
+        this.mathcounter=0
         for(let item of this.objects){
             if(this.objects[index].data.color==el.data.color ){
-                this.mathcounter++
+                color=true
             }
             if(this.objects[index].data.type==el.data.type){
-                this.mathcounter++
+                type=true
             }
             if(this.objects[index].data.v1==el.data.v1){
-                this.mathcounter++
+                v1=true
             }
             if(this.objects[index].data.v2==el.data.v2){
-                this.mathcounter++
+                v2=true
             }
             index=index+1
         }
-        if(this.mathcounter==4){
+        if(color && type && v1  && type!=1){
+            return false
+        }
+        if(color && type && v1 && v2 && type==1){
             return false
         }
         return true
     }
     showItems(){
+        this.errorlistElement.slideUp()
         this.objectsList.html('')
+        this.errorlistElement.html('')
         for(let item of this.objects){
-            this.objectsList.append( '<li><span>color:<b>'+item.data.color+'</b>,type:<b>'+item.data.type+'</b>,v1:<b>'+item.data.v1+'</b>,v2:<b>'+item.data.v2+'</b>,surfacearea:<b>'+item.data.surfacearea+'</b></span></li>' )
+            this.objectsList.append( '<li><span>color:<b>'+item.data.color+'</b>,type:<b>'+this.convertInt(item.data.type)+'</b>,v1:<b>'+item.data.v1+'</b>,v2:<b>'+item.data.v2+'</b>,surfacearea:<b>'+item.data.surfacearea+'</b></span></li>' )
+        }
+    }
+    convertInt(el){
+        switch(el){
+            case '0':
+                return 'square'
+            break
+            case '1':
+                return 'rectangle'
+            break
+            case '2':
+                return 'circle'
+            break
         }
     }
 }
@@ -99,7 +124,6 @@ class maincount{
     constructor(select,colection,form){
         let objects = [new countSquare,new countRectangle,new countCircle]
         let surfacearea=objects[select.val()].count()
-
         colection.add(new item({'color':$(".color").val(),'type':$(".type").val(),'v1':$(".v1").val(),'v2':$(".v2").val(),'surfacearea':surfacearea}))
     } 
 }
@@ -144,6 +168,7 @@ class validate{
        return false
     }
     showEroor(){
+        this.errorlistElement.slideDown()
         this.errorlistElement.html('')
         for(let item of this.errorlist){
             this.errorlistElement.append( '<li>'+item+'</li>' )

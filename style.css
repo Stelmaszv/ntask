@@ -1,3 +1,9 @@
 .secundval{
     display: none;
 }
+.erroslist>li>span>b{
+    margin-right: 10px;
+}
+.erroslist{
+    display: none;
+}
