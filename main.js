@@ -16,7 +16,7 @@ $(document).ready(function(){
         e.preventDefault()
         valid= new validate()
         if(valid.ifvalid()){
-            mian = new maincount(select,colectionlist,form)
+            mian = new maincount(select,colectionlist)
         }else{
             valid.showEroor()
         }
@@ -121,7 +121,7 @@ class countCircle extends count{
     }
 }
 class maincount{
-    constructor(select,colection,form){
+    constructor(select,colection){
         let objects = [new countSquare,new countRectangle,new countCircle]
         let surfacearea=objects[select.val()].count()
         colection.add(new item({'color':$(".color").val(),'type':$(".type").val(),'v1':$(".v1").val(),'v2':$(".v2").val(),'surfacearea':surfacearea}))
