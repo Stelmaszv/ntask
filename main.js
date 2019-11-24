@@ -127,13 +127,6 @@ class maincount{
         colection.add(new item({'color':$(".color").val(),'type':$(".type").val(),'v1':$(".v1").val(),'v2':$(".v2").val(),'surfacearea':surfacearea}))
     } 
 }
-class abstractvalid{
-    constructor() {
-        if (this.constructor === Widget) {
-            throw new TypeError('Abstract class "Widget" cannot be instantiated directly.'); 
-        }
-    }
-}
 class mianvalid{
   constructor(item){
     this.item=$(item)
