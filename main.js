@@ -93,9 +93,14 @@ class colection{
         }
     }
 }
-class count{
+class count {
+    constructor() {
+        if (this.constructor === count) {
+            throw new TypeError('Abstract class "count" cannot be instantiated directly.'); 
+        }
+    }
     count(){}
-}   
+}
 class countSquare extends count{
     count(){
         let var1=$(".v1").val()
@@ -121,6 +126,13 @@ class maincount{
         let surfacearea=objects[select.val()].count()
         colection.add(new item({'color':$(".color").val(),'type':$(".type").val(),'v1':$(".v1").val(),'v2':$(".v2").val(),'surfacearea':surfacearea}))
     } 
+}
+class abstractvalid{
+    constructor() {
+        if (this.constructor === Widget) {
+            throw new TypeError('Abstract class "Widget" cannot be instantiated directly.'); 
+        }
+    }
 }
 class mianvalid{
   constructor(item){
