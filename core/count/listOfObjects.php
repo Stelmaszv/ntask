@@ -17,11 +17,11 @@ class listOfObjects{
             'v1'         => intval($data['var1']),
             'v2'         => intval($this->check($data['var2'])),
         ];
-        if(!$this->ifuniq()){
+        if(!$this->ifunique()){
             $sql = 'INSERT INTO `objects` (`color`, ` volume`, `v1`, `v2`, `types`) VALUES ("'.$this->data['color'].'",'.$this->data['volume'].','.$this->data['v1'].','.$this->data['v2'].',"'.$this->data['types'].'");';
             return $this->db->MsQuery($sql);
         }
-        die('This geometric shape is not uniq');
+        die('This geometric shape is not unique');
     }
     private function check(string $emptyvar){
         if(empty($emptyvar)){
@@ -29,7 +29,7 @@ class listOfObjects{
         }
         return $emptyvar;
     }
-    private function ifuniq(){ 
+    private function ifunique(){ 
         $objectlist=$this->db->sqlloopAll('SELECT * FROM `objects` where `color` = "'.$this->data['color'].'" AND ` volume` = '.$this->data['volume'].' AND `v1`='.$this->data['v1'].' AND `v2`='.$this->data['v2'].' ');
         if(count($objectlist)){
             return true;
