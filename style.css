@@ -1,3 +1,11 @@
 .secundval,.erroslist{
     display: none;
 }
+.objectsList>li>span{
+    font-weight: bolder;
+}
+.objectsList>li>span>b{
+    margin-right: 5px;
+    margin-left: 5px;
+    color: red;
+}
