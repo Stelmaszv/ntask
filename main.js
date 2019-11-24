@@ -26,24 +26,20 @@ $(document).ready(function(){
 class item{
     constructor(data){
         this.data=data
-        this.mathcounter=0
     }
 }
 class colection{
-    constructor(){
-        this.objects=[]
-        this.objectsList=$(".objectsList");
-        this.errorlistElement=$(".erroslist");
-
-    }
+    #objects=[]
+    #objectsList=$(".objectsList");
+    #errorlistElement=$(".erroslist");
     add(item){
         if(this.ifunique(item)){
-            this.objects.push(item)
+            this.#objects.push(item)
             this.showItems()
         }else{
-            this.errorlistElement.html('')
-            this.errorlistElement.slideDown()
-            this.errorlistElement.append('<li>This objects is not unique</li>')
+            this.#errorlistElement.html('')
+            this.#errorlistElement.slideDown()
+            this.#errorlistElement.append('<li>This objects is not unique</li>')
         }
     }
     ifunique(el){
@@ -52,18 +48,17 @@ class colection{
         let type=false
         let v1=false
         let v2=false
-        this.mathcounter=0
-        for(let item of this.objects){
-            if(this.objects[index].data.color==el.data.color ){
+        for(let item of this.#objects){
+            if(this.#objects[index].data.color==el.data.color ){
                 color=true
             }
-            if(this.objects[index].data.type==el.data.type){
+            if(this.#objects[index].data.type==el.data.type){
                 type=true
             }
-            if(this.objects[index].data.v1==el.data.v1){
+            if(this.#objects[index].data.v1==el.data.v1){
                 v1=true
             }
-            if(this.objects[index].data.v2==el.data.v2){
+            if(this.#objects[index].data.v2==el.data.v2){
                 v2=true
             }
             index=index+1
@@ -77,11 +72,11 @@ class colection{
         return true
     }
     showItems(){
-        this.errorlistElement.slideUp()
-        this.objectsList.html('')
-        this.errorlistElement.html('')
-        for(let item of this.objects){
-            this.objectsList.append( '<li><span>color:<b>'+item.data.color+'</b>,type:<b>'+this.convertInt(item.data.type)+'</b>,v1:<b>'+item.data.v1+'</b>,v2:<b>'+item.data.v2+'</b>,surfacearea:<b>'+item.data.surfacearea+'</b></span></li>' )
+        this.#errorlistElement.slideUp()
+        this.#objectsList.html('')
+        this.#errorlistElement.html('')
+        for(let item of this.#objects){
+            this.#objectsList.append( '<li><span>color:<b>'+item.data.color+'</b>,type:<b>'+this.convertInt(item.data.type)+'</b>,v1:<b>'+item.data.v1+'</b>,v2:<b>'+item.data.v2+'</b>,surfacearea:<b>'+item.data.surfacearea+'</b></span></li>' )
         }
     }
     convertInt(el){
@@ -152,39 +147,40 @@ class validType extends mianvalid{
     }
 }
 class validate{
+    #errorlist=[]
+    #errorlistElement=$(".erroslist");
     constructor(){
         let validateList=new validatorobserver();
         validateList.add(new mianvalid('.color'))
         validateList.add(new validType('.type'))
         validateList.add(new mianvalid('.v1'))
         validateList.validateStart();
-        this.errorlist=validateList.errors
-        this.errorlistElement=$(".erroslist");
+        this.#errorlist=validateList.errors
     }
     ifvalid(){
-       if(!this.errorlist.length){
+       if(!this.#errorlist.length){
            return true;
        }
        return false
     }
     showEroor(){
-        this.errorlistElement.slideDown()
-        this.errorlistElement.html('')
-        for(let item of this.errorlist){
-            this.errorlistElement.append( '<li>'+item+'</li>' )
+        this.#errorlistElement.slideDown()
+        this.#errorlistElement.html('')
+        for(let item of this.#errorlist){
+            this.#errorlistElement.append( '<li>'+item+'</li>' )
         }
     }
 }
 class validatorobserver{
+    #validators=[]
     constructor(){
-        this.validators=[]
         this.errors=[]
     }
     add(object) {
-        this.validators.push(object)    
+        this.#validators.push(object)    
     }
     validateStart(){
-        for(let item of this.validators){
+        for(let item of this.#validators){
             let el=item.valid();
             if(item.stan){
                 this.errors.push(el)
