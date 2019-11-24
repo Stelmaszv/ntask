@@ -30,7 +30,7 @@ class v2(abstractvalid):
         if self._data.arr[1].get() == 1 and  self._var<1:
             self.errorlist = 1
             return 'v2 is undefined for rectangle !'
-class uqniq(abstractvalid):
+class unique(abstractvalid):
     def valid(self):
         items=self._data.itemslist
         uniq=0
@@ -40,7 +40,7 @@ class uqniq(abstractvalid):
                     uniq=uniq+1
         if uniq == len(self._data.arr):
             self.errorlist = 1
-            return 'This Geometric shape is not uqniq'
+            return 'This Geometric shape is not unique'
 class mainvalidate:
     def __init__(self,object):
         self._errorlist=[]
@@ -49,7 +49,7 @@ class mainvalidate:
         validator.attach(type(object,1))
         validator.attach(abstractvalid(object,2))
         validator.attach(v2(object,3))
-        validator.attach(uqniq(object, 3))
+        validator.attach(unique(object, 3))
         validator.notify()
         self._errorlist=validator.returnErros()
 
