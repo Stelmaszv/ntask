@@ -1,6 +1,7 @@
 const form=$(".form");
 const select=$(".type")
 const var2=$(".secundval")
+const var2value=$(".v2")
 const erroslist=$(".erroslist")
 const PI=3.1415
 $(document).ready(function(){
@@ -8,6 +9,7 @@ $(document).ready(function(){
         if(select.val()==='1'){
             var2.slideDown('slow');
         }else{
+            var2value.val("")
             var2.slideUp('slow');
         }
     });
@@ -72,13 +74,22 @@ class colection{
         return true
     }
     showItems(){
+        let var2chceck=''
         this.#errorlistElement.slideUp()
         this.#objectsList.html('')
         this.#errorlistElement.html('')
         for(let item of this.#objects){
-            this.#objectsList.append( '<li><span>color:<b>'+item.data.color+'</b>,type:<b>'+this.convertInt(item.data.type)+'</b>,v1:<b>'+item.data.v1+'</b>,v2:<b>'+item.data.v2+'</b>,surfacearea:<b>'+item.data.surfacearea+'</b></span></li>' )
+            var2chceck = ifvar2(item)
+            this.#objectsList.append( '<li><span>color:<b>'+item.data.color+'</b>,type:<b>'+this.convertInt(item.data.type)+'</b>,v1:<b>'+item.data.v1+'</b>,'+var2chceck+' surfacearea:<b>'+item.data.surfacearea+'</b></span></li>' )
+        }
+        function ifvar2(item){
+            if(item.data.v2){
+                return 'v2:<b>'+item.data.v2+'</b>'
+            }
+            return ''
         }
     }
+
     convertInt(el){
         switch(el){
             case '0':
