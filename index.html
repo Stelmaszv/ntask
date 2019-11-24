@@ -1,61 +1,64 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css" >
-        <title>ntask</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Ntask</a>
-        </nav>
-        <div class="container">
-            <div>
-                <ul class="erroslist alert alert alert-danger">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>ntask</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Ntask</a>
+    </nav>
+    <div class="container">
+        <div>
+            <ul class="erroslist alert alert alert-danger"></ul>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <form method="POST" class="form">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">geometric shape color</label>
+                        <select class="form-control color" id="exampleFormControlSelect1" name="color">
+                            <option></option>
+                            <option>red</option>
+                            <option>blue</option>
+                            <option>green</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1"> geometric shape type </label>
+                        <select class="form-control type" id="exampleFormControlSelect1" name="geometricshapetype">
+                            <option></option>
+                            <option value="0">square</option>
+                            <option value="1">rectangle</option>
+                            <option value="2">circle</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">side wall or height or radius of the circle </label>
+                        <input type="number" class="form-control v1" id="exampleFormControlInput1" name="value"
+                            placeholder="value for height or radius of the circle ">
+                    </div>
+                    <div class="form-group secundval">
+                        <label for="exampleFormControlInput1">secund side wall (only if rectangle) </label>
+                        <input type="number" class="form-control v2" id="exampleFormControlInput1"
+                            placeholder="secund side wall (only if rectangle)" name="value2">
+                    </div>
+                    <button type="submit" name="count" value="count" class="btn btn-primary">cout</button>
+                    <button type="reset" name="count" value="count" class="btn btn-primary">reset</button>
+                </form>
+            </div>
+            <div class="col-6">
+                <h2>Objects</h2>
+                <ul class="objectsList">
 
                 </ul>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <form method="POST" class="form">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">geometric shape color</label>
-                            <select class="form-control color" id="exampleFormControlSelect1" name="color">
-                                    <option ></option>    
-                                    <option>red</option>
-                                    <option>blue</option>
-                                    <option>green</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1"> geometric shape type </label>
-                            <select class="form-control type" id="exampleFormControlSelect1" name="geometricshapetype">
-                                <option ></option>    
-                                <option value="0">square</option>
-                                <option value="1">rectangle</option>
-                                <option value="2">circle</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">side wall or height or radius of the circle </label>
-                            <input type="number" class="form-control v1" id="exampleFormControlInput1" name="value" placeholder="value for height or radius of the circle ">
-                        </div>
-                        <div class="form-group secundval">
-                            <label for="exampleFormControlInput1">secund side wall (only if rectangle) </label>
-                            <input type="number" class="form-control v2" id="exampleFormControlInput1" placeholder="secund side wall (only if rectangle)" name="value2">
-                        </div>
-                            <button type="submit" name="count" value="count" class="btn btn-primary">cout</button>
-                            <button type="reset" name="count" value="count" class="btn btn-primary">reset</button>
-                    </form> 
-                </div>
-                <div class="col-6">
-                    <h2>Objects</h2>
-                    <ul class="objectsList">
-
-                    </ul>
-                </div>
-            </div>
         </div>
-    </body>
+    </div>
+</body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="main.js"></script>
+    <script src="main.j s"></script>
 </html>
