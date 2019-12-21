@@ -9,7 +9,6 @@ class mainCount{
     private $listOfObjects;
     function __construct(array $data){
         $this->listOfObjects=new listOfObjects();
-        var_dump($data['geometricshapetype']);
         $objects['square']= new square($data);
         $objects['rectangle']= new rectangle($data);
         $objects['circle']= new circle($data);
