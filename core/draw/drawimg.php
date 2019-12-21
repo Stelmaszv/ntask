@@ -1,6 +1,5 @@
 <?php
 namespace core\draw;
-
 class drawimg{
     private $img;
     public function __construct(array $data){
