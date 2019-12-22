@@ -7,5 +7,4 @@ class rectanglevalid extends valid{
             die('v2 is undefined for rectangle !');
         }
     }
-    function validaction(){ }
 }

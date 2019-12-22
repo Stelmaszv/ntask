@@ -14,5 +14,5 @@ abstract class valid{
             die($this->validval.' is undefined');
         }
     }
-    abstract function validaction();
+    function validaction(){}
 } 
